@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purplle Vision AI | Store Intelligence Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg: #180d1d;
+            --panel: rgba(46, 25, 53, 0.68);
+            --panel-deep: rgba(24, 13, 29, 0.78);
+            --line: rgba(236, 72, 153, 0.18);
+            --primary: #d946ef;
+            --primary-soft: rgba(217, 70, 239, 0.18);
+            --pink: #ec4899;
+            --success: #34d399;
+            --warning: #fbbf24;
+            --danger: #fb7185;
+            --muted: #c9a9cf;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            color: #fff7ff;
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background:
+                radial-gradient(900px 520px at 8% -8%, rgba(217, 70, 239, 0.34), transparent 62%),
+                radial-gradient(720px 460px at 100% 0%, rgba(236, 72, 153, 0.28), transparent 58%),
+                linear-gradient(180deg, #221027 0%, #120a18 100%);
+            background-attachment: fixed;
+        }
+
+        .glass-panel {
+            background: linear-gradient(180deg, var(--panel), var(--panel-deep));
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            box-shadow: 0 18px 56px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+        }
+
+        .glass-card {
+            background: linear-gradient(180deg, rgba(67, 34, 77, 0.56), rgba(27, 14, 33, 0.58));
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(217, 70, 239, 0.45);
+            box-shadow: 0 18px 42px -18px rgba(217, 70, 239, 0.72);
+        }
+
+        .brand-gradient-text {
+            background: linear-gradient(135deg, #c084fc, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .brand-gradient-bg { background: linear-gradient(135deg, #a855f7, #ec4899); }
+        .brand-soft-bg { background: linear-gradient(135deg, rgba(168, 85, 247, 0.18), rgba(236, 72, 153, 0.09)); }
+
+        .pulse-dot {
+            position: relative;
+            display: inline-block;
+            width: .55rem;
+            height: .55rem;
+            border-radius: 999px;
+            background: var(--success);
+        }
+
+        .pulse-dot::after {
+            content: "";
+            position: absolute;
+            inset: -4px;
+            border-radius: inherit;
+            animation: pulseRing 1.8s cubic-bezier(.4, 0, .6, 1) infinite;
+        }
+
+        @keyframes pulseRing {
+            0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.55); }
+            70% { box-shadow: 0 0 0 12px rgba(52, 211, 153, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+        }
+
+        .scanline {
+            background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 2px, transparent 2px 4px);
+        }
+
+        .grid-bg {
+            background-image:
+                linear-gradient(rgba(217, 70, 239, .08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(217, 70, 239, .08) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2.4s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .video-feed {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: #050105;
+        }
+
+        .icon {
+            width: 1rem;
+            height: 1rem;
+            stroke: currentColor;
+            stroke-width: 2;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen w-full">
+        <header class="px-4 lg:px-10 pt-5">
+            <div class="glass-panel px-5 lg:px-6 py-5 flex flex-col md:flex-row md:items-center justify-between gap-5">
+                <div class="flex items-center gap-4">
+                    <div class="h-14 rounded-2xl bg-white/95 px-4 py-2 flex items-center justify-center shadow-[0_0_30px_rgba(217,70,239,.22)]">
+                        <div class="text-2xl font-black tracking-tight text-[#7e22ce]">purplle</div>
+                    </div>
+                    <div>
+                        <h1 class="text-xl lg:text-2xl font-bold tracking-tight">
+                            <span class="brand-gradient-text">Vision AI</span>
+                            <span class="text-white/90"> - Store Intelligence</span>
+                        </h1>
+                        <p class="text-[11px] lg:text-xs uppercase tracking-[0.28em] text-[#c9a9cf]">Real-time retail analytics platform</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-full bg-emerald-400/10 border border-emerald-300/30 text-[11px] font-semibold text-emerald-300 tracking-wider">YOLOv8 ONLINE</span>
+                    <span class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-full bg-fuchsia-400/10 border border-fuchsia-300/30 text-[11px] font-semibold text-fuchsia-200 tracking-wider">EDGE 5 NODES</span>
+                    <span class="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-emerald-400/10 border border-emerald-300/30">
+                        <span class="pulse-dot"></span>
+                        <span class="text-xs font-semibold tracking-wider text-emerald-300">LIVE</span>
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <main class="px-4 lg:px-10 pt-6 pb-10 grid grid-cols-12 gap-6">
+            <section class="col-span-12 xl:col-span-8 glass-panel p-5 lg:p-6">
+                <div class="flex items-end justify-between gap-4 mb-5">
+                    <div class="flex items-center gap-3">
+                        <div class="h-9 w-9 rounded-xl brand-soft-bg border border-fuchsia-300/25 flex items-center justify-center text-fuchsia-300">
+                            <svg class="icon" viewBox="0 0 24 24"><path d="m15 10 4.55-2.28A1 1 0 0 1 21 8.62v6.76a1 1 0 0 1-1.45.9L15 14"></path><path d="M5 6h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Z"></path></svg>
+                        </div>
+                        <div>
+                            <h2 class="text-lg lg:text-xl font-semibold tracking-tight">Live CCTV Tracking</h2>
+                            <p class="text-xs text-[#c9a9cf]">Camera feeds with YOLOv8 inference</p>
+                        </div>
+                    </div>
+                    <div class="hidden sm:flex items-center gap-2 text-xs text-[#c9a9cf]"><span class="pulse-dot"></span> Streaming</div>
+                </div>
+
+                <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="col-span-full glass-card min-h-[220px] flex flex-col items-center justify-center text-center p-8">
+                        <div class="h-10 w-10 rounded-xl brand-soft-bg border border-fuchsia-300/25 flex items-center justify-center mb-4">
+                            <div class="h-5 w-5 rounded-full border-2 border-fuchsia-300 border-t-transparent animate-spin"></div>
+                        </div>
+                        <div class="font-mono text-sm text-fuchsia-200/80">BOOTING YOLOv8 CAMERA STREAMS</div>
+                        <div class="mt-3 h-1 w-48 bg-white/10 rounded overflow-hidden"><div class="h-full w-1/2 brand-gradient-bg shimmer"></div></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <div class="glass-card p-5">
+                        <div class="flex items-center justify-between text-[11px] uppercase tracking-widest text-[#c9a9cf]">
+                            <span>Store Health</span>
+                            <span class="text-emerald-300 bg-emerald-400/10 border border-emerald-300/30 px-2 py-1 rounded-full">Optimal</span>
+                        </div>
+                        <div class="mt-3 flex items-end gap-2"><span class="text-4xl font-bold text-emerald-300">94</span><span class="text-xs text-[#c9a9cf] mb-1">/100</span></div>
+                        <div class="mt-3 h-1.5 rounded-full bg-white/5 overflow-hidden"><div class="h-full bg-emerald-300" style="width:94%"></div></div>
+                    </div>
+                    <div class="glass-card p-5">
+                        <div class="flex items-center justify-between text-[11px] uppercase tracking-widest text-[#c9a9cf]">
+                            <span>Peak Traffic</span>
+                            <span class="text-fuchsia-200 bg-fuchsia-400/10 border border-fuchsia-300/30 px-2 py-1 rounded-full">19:00</span>
+                        </div>
+                        <div class="mt-3 text-4xl font-bold brand-gradient-text">High</div>
+                        <div class="flex items-end gap-1 h-10 mt-3">
+                            <div class="flex-1 brand-gradient-bg rounded-sm opacity-70" style="height:20%"></div><div class="flex-1 brand-gradient-bg rounded-sm opacity-70" style="height:35%"></div><div class="flex-1 brand-gradient-bg rounded-sm opacity-70" style="height:28%"></div><div class="flex-1 brand-gradient-bg rounded-sm opacity-70" style="height:52%"></div><div class="flex-1 brand-gradient-bg rounded-sm opacity-70" style="height:72%"></div><div class="flex-1 brand-gradient-bg rounded-sm opacity-70" style="height:95%"></div><div class="flex-1 brand-gradient-bg rounded-sm opacity-70" style="height:66%"></div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-5">
+                        <div class="flex items-center justify-between text-[11px] uppercase tracking-widest text-[#c9a9cf] mb-3">
+                            <span>Live Alerts</span>
+                            <span class="text-amber-200 bg-amber-400/10 border border-amber-300/30 px-2 py-1 rounded-full">3 New</span>
+                        </div>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex items-center justify-between"><span><i class="inline-block w-1.5 h-1.5 rounded-full bg-amber-300 mr-2"></i>Queue surge</span><span class="text-[#c9a9cf]">now</span></div>
+                            <div class="flex items-center justify-between"><span><i class="inline-block w-1.5 h-1.5 rounded-full bg-fuchsia-300 mr-2"></i>Dwell spike</span><span class="text-[#c9a9cf]">1m</span></div>
+                            <div class="flex items-center justify-between"><span><i class="inline-block w-1.5 h-1.5 rounded-full bg-rose-300 mr-2"></i>Stockout flag</span><span class="text-[#c9a9cf]">4m</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="col-span-12 xl:col-span-4 glass-panel p-5 lg:p-6 flex flex-col gap-4">
+                <div class="flex items-center gap-3 mb-1">
+                    <div class="h-9 w-9 rounded-xl brand-soft-bg border border-fuchsia-300/25 flex items-center justify-center text-fuchsia-300">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M13 2 3 14h8l-1 8 11-14h-8l1-6Z"></path></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-lg lg:text-xl font-semibold tracking-tight">Live Metrics</h2>
+                        <p class="text-xs text-[#c9a9cf]">Real-time KPIs</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-5">
+                    <div class="flex items-center justify-between"><div class="text-[11px] font-bold tracking-widest uppercase text-[#c9a9cf]">Unique Visitors</div><span class="text-[10px] text-fuchsia-200 bg-fuchsia-400/10 border border-fuchsia-300/30 px-2 py-1 rounded-full">Live</span></div>
+                    <div id="visitors" class="mt-3 text-4xl font-bold tracking-tight brand-gradient-text">--</div>
+                    <div class="mt-1 text-xs text-[#c9a9cf]">Real-time count</div>
+                </div>
+                <div class="glass-card p-5">
+                    <div class="flex items-center justify-between"><div class="text-[11px] font-bold tracking-widest uppercase text-[#c9a9cf]">Conversion Rate</div><span class="text-[10px] text-emerald-300 bg-emerald-400/10 border border-emerald-300/30 px-2 py-1 rounded-full">Trend</span></div>
+                    <div id="conversion" class="mt-3 text-4xl font-bold tracking-tight brand-gradient-text">--%</div>
+                    <div class="mt-1 text-xs text-[#c9a9cf]">Purchase completion</div>
+                </div>
+                <div class="glass-card p-5">
+                    <div class="flex items-center justify-between"><div class="text-[11px] font-bold tracking-widest uppercase text-[#c9a9cf]">Queue Depth</div><span class="text-[10px] text-fuchsia-200 bg-fuchsia-400/10 border border-fuchsia-300/30 px-2 py-1 rounded-full">Billing</span></div>
+                    <div id="queue" class="mt-3 text-4xl font-bold tracking-tight brand-gradient-text">--</div>
+                    <div class="mt-1 text-xs text-[#c9a9cf]">Billing zone</div>
+                </div>
+                <div class="glass-card p-5">
+                    <div class="flex items-center justify-between"><div class="text-[11px] font-bold tracking-widest uppercase text-[#c9a9cf]">Abandonment Rate</div><span class="text-[10px] text-amber-200 bg-amber-400/10 border border-amber-300/30 px-2 py-1 rounded-full">Watch</span></div>
+                    <div id="abandonment" class="mt-3 text-4xl font-bold tracking-tight brand-gradient-text">--%</div>
+                    <div class="mt-1 text-xs text-[#c9a9cf]">Queue drop-offs</div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mt-1">
+                    <button onclick="window.location.reload()" class="brand-gradient-bg text-white font-semibold py-3 rounded-xl hover:opacity-90 transition">Refresh</button>
+                    <button onclick="resetSystem()" class="bg-rose-500/15 border border-rose-300/40 text-rose-200 font-semibold py-3 rounded-xl hover:bg-rose-500/25 transition">Reset</button>
+                </div>
+            </aside>
+
+            <section class="col-span-12 xl:col-span-7 glass-panel p-5 lg:p-6">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="h-9 w-9 rounded-xl brand-soft-bg border border-fuchsia-300/25 flex items-center justify-center text-fuchsia-300">
+                        <svg class="icon" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg>
+                    </div>
+                    <div>
+                        <h2 class="text-lg lg:text-xl font-semibold tracking-tight">Customer Journey - Conversion Funnel</h2>
+                        <p class="text-xs text-[#c9a9cf]">Entry to zone visit to billing to purchase</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="glass-card p-4"><div class="flex justify-between text-[11px] uppercase tracking-widest text-[#c9a9cf]"><span>Entry</span><span id="val-entry" class="text-fuchsia-200">0</span></div><div id="funnel-entry" class="mt-3 text-3xl font-bold brand-gradient-text">0</div><div class="mt-3 h-1.5 rounded-full bg-white/5 overflow-hidden"><div class="h-full brand-gradient-bg" style="width:100%"></div></div></div>
+                    <div class="glass-card p-4"><div class="flex justify-between text-[11px] uppercase tracking-widest text-[#c9a9cf]"><span>Zone</span><span id="val-skincare" class="text-fuchsia-200">0</span></div><div id="funnel-skincare" class="mt-3 text-3xl font-bold brand-gradient-text">0</div><div class="mt-3 h-1.5 rounded-full bg-white/5 overflow-hidden"><div class="h-full brand-gradient-bg" style="width:68%"></div></div></div>
+                    <div class="glass-card p-4"><div class="flex justify-between text-[11px] uppercase tracking-widest text-[#c9a9cf]"><span>Queue</span><span id="val-makeup" class="text-fuchsia-200">0</span></div><div id="funnel-makeup" class="mt-3 text-3xl font-bold brand-gradient-text">0</div><div class="mt-3 h-1.5 rounded-full bg-white/5 overflow-hidden"><div class="h-full brand-gradient-bg" style="width:42%"></div></div></div>
+                    <div class="glass-card p-4"><div class="flex justify-between text-[11px] uppercase tracking-widest text-[#c9a9cf]"><span>Purchase</span><span id="val-cash" class="text-fuchsia-200">0</span></div><div id="funnel-cash" class="mt-3 text-3xl font-bold brand-gradient-text">0</div><div class="mt-3 h-1.5 rounded-full bg-white/5 overflow-hidden"><div class="h-full brand-gradient-bg" style="width:21%"></div></div></div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-6">
+                    <div class="glass-card p-4"><div class="text-[10px] uppercase tracking-widest text-[#c9a9cf]">Avg Dwell</div><div class="text-lg font-semibold mt-1">2m 41s</div><div class="text-xs text-[#c9a9cf]">Skincare</div></div>
+                    <div class="glass-card p-4"><div class="text-[10px] uppercase tracking-widest text-[#c9a9cf]">Avg Dwell</div><div class="text-lg font-semibold mt-1">3m 12s</div><div class="text-xs text-[#c9a9cf]">Makeup</div></div>
+                    <div class="glass-card p-4"><div class="text-[10px] uppercase tracking-widest text-[#c9a9cf]">Avg Dwell</div><div class="text-lg font-semibold mt-1">1m 58s</div><div class="text-xs text-[#c9a9cf]">Storage</div></div>
+                    <div class="glass-card p-4"><div class="text-[10px] uppercase tracking-widest text-[#c9a9cf]">Avg Dwell</div><div class="text-lg font-semibold mt-1">0m 47s</div><div class="text-xs text-[#c9a9cf]">Billing</div></div>
+                </div>
+            </section>
+
+            <section class="col-span-12 xl:col-span-5 glass-panel p-5 lg:p-6">
+                <div class="flex items-center justify-between gap-3 mb-5">
+                    <div class="flex items-center gap-3">
+                        <div class="h-9 w-9 rounded-xl brand-soft-bg border border-fuchsia-300/25 flex items-center justify-center text-fuchsia-300">
+                            <svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                        </div>
+                        <div>
+                            <h2 class="text-lg lg:text-xl font-semibold tracking-tight">AI Floor Heatmap</h2>
+                            <p class="text-xs text-[#c9a9cf]">Dwell density live overlay</p>
+                        </div>
+                    </div>
+                    <span class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full brand-gradient-bg text-white text-[11px] font-semibold tracking-wider">Dwell Analytics</span>
+                </div>
+                <div class="relative rounded-2xl overflow-hidden border border-fuchsia-300/20 bg-black/40 aspect-[16/10] cursor-pointer" onclick="openZoom(document.getElementById('layout-img').src, 'Store Layout Heatmap', true)">
+                    <img id="layout-img" src="/static/layout.png" alt="Store layout" class="absolute inset-0 w-full h-full object-contain opacity-75 p-2">
+                    <div id="heatmap-overlay" class="absolute inset-0 w-full h-full pointer-events-none"></div>
+                    <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+                    <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-[10px] uppercase tracking-widest text-[#c9a9cf]">
+                        <span>Floor Plan</span>
+                        <span><i class="inline-block w-2 h-2 rounded-full bg-emerald-300"></i> Low <i class="inline-block w-2 h-2 rounded-full bg-amber-300 ml-2"></i> Med <i class="inline-block w-2 h-2 rounded-full bg-rose-400 ml-2"></i> High</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="px-4 lg:px-10 pb-8 text-[11px] text-[#c9a9cf]/70 flex flex-wrap items-center justify-between gap-3">
+            <span>Purplle Vision AI - v2.6 - Edge inference cluster</span>
+            <span class="tracking-widest uppercase">Secure - SOC 2 - Encrypted</span>
+        </footer>
+    </div>
+
+    <div id="zoom-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-4" onclick="closeZoom()">
+        <div class="relative max-w-7xl w-full" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="zoom-title" class="text-2xl font-bold text-white"></h3>
+                <button onclick="closeZoom()" class="text-white hover:text-rose-300 bg-white/10 rounded-full p-2 transition-colors">
+                    <svg class="h-6 w-6 icon" viewBox="0 0 24 24"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                </button>
+            </div>
+            <div class="relative rounded-2xl overflow-hidden border border-fuchsia-300/25 bg-black">
+                <img id="zoom-image" class="w-full" src="" alt="Zoomed feed">
+                <div id="zoom-overlay" class="absolute inset-0 w-full h-full pointer-events-none"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loading-overlay" class="hidden fixed inset-0 z-50 items-center justify-center bg-[#120a18]/90 backdrop-blur-md flex-col gap-6">
+        <div class="relative w-24 h-24">
+            <div class="absolute inset-0 rounded-full border-4 border-white/10"></div>
+            <div class="absolute inset-0 rounded-full border-4 border-fuchsia-400 border-t-transparent animate-spin"></div>
+        </div>
+        <h2 class="text-2xl font-bold text-white tracking-widest animate-pulse">REBOOTING SYSTEM</h2>
+        <p class="text-[#c9a9cf] font-mono">Purging metrics, syncing buffers, and restarting vision models.</p>
+        <p class="text-fuchsia-300 text-sm font-semibold">Please wait about 10 seconds.</p>
+    </div>
+
+    <script>
+        let activeCameras = new Set();
+
+        async function fetchMetrics() {
+            try {
+                const [metricsRes, funnelRes] = await Promise.all([
+                    fetch('/stores/ST1008/metrics'),
+                    fetch('/stores/ST1008/funnel')
+                ]);
+
+                if (metricsRes.ok) {
+                    const data = await metricsRes.json();
+                    document.getElementById('visitors').innerText = data.unique_visitors || 0;
+                    document.getElementById('conversion').innerText = ((data.conversion_rate || 0) * 100).toFixed(1) + '%';
+                    document.getElementById('queue').innerText = data.queue_depth || 0;
+                    document.getElementById('abandonment').innerText = ((data.abandonment_rate || 0) * 100).toFixed(1) + '%';
+                }
+
+                if (funnelRes.ok) {
+                    const stages = (await funnelRes.json()).funnel || [];
+                    const entry = stages.find(s => s.stage === 'Entry')?.count || 0;
+                    const zone = stages.find(s => s.stage === 'Zone Visit')?.count || 0;
+                    const queue = stages.find(s => s.stage === 'Billing Queue')?.count || 0;
+                    const purchase = stages.find(s => s.stage === 'Purchase')?.count || 0;
+
+                    document.getElementById('val-entry').innerText = entry;
+                    document.getElementById('funnel-entry').innerText = entry;
+                    document.getElementById('val-skincare').innerText = zone;
+                    document.getElementById('funnel-skincare').innerText = zone;
+                    document.getElementById('val-makeup').innerText = queue;
+                    document.getElementById('funnel-makeup').innerText = queue;
+                    document.getElementById('val-cash').innerText = purchase;
+                    document.getElementById('funnel-cash').innerText = purchase;
+                }
+            } catch (error) {
+                console.error('Error fetching metrics:', error);
+            }
+        }
+
+        async function fetchHeatmap() {
+            try {
+                const response = await fetch('/stores/ST1008/heatmap');
+                if (!response.ok) return;
+
+                const data = await response.json();
+                const overlay = document.getElementById('heatmap-overlay');
+                overlay.innerHTML = '';
+
+                const zoneCoords = {
+                    'ENTRY_EXIT': { left: '15%', top: '85%' },
+                    'SKINCARE': { left: '35%', top: '43%' },
+                    'MAKEUP_UNIT': { left: '54%', top: '47%' },
+                    'CASH_COUNTER': { left: '83%', top: '36%' },
+                    'STORAGE': { left: '95%', top: '66%' }
+                };
+
+                (data.zones || []).forEach(zone => {
+                    const coords = zoneCoords[zone.zone_id];
+                    const score = Math.min(Math.max(zone.avg_dwell_score || 0, zone.frequency_score || 0), 100);
+                    if (!coords || score <= 5) return;
+
+                    const dot = document.createElement('div');
+                    dot.className = 'absolute rounded-full blur-xl mix-blend-screen transition-all duration-1000';
+                    const size = 50 + (score * 1.5);
+                    dot.style.width = `${size}px`;
+                    dot.style.height = `${size}px`;
+                    dot.style.left = `calc(${coords.left} - ${size / 2}px)`;
+                    dot.style.top = `calc(${coords.top} - ${size / 2}px)`;
+                    dot.style.backgroundColor = score > 75
+                        ? 'rgba(244, 63, 94, 0.82)'
+                        : score > 40
+                            ? 'rgba(251, 191, 36, 0.74)'
+                            : 'rgba(52, 211, 153, 0.58)';
+                    overlay.appendChild(dot);
+                });
+            } catch (error) {
+                console.error('Error fetching heatmap:', error);
+            }
+        }
+
+        async function updateCameras() {
+            try {
+                const response = await fetch('/cameras');
+                if (!response.ok) return;
+
+                const data = await response.json();
+                const grid = document.getElementById('videoGrid');
+
+                if (activeCameras.size === 0 && data.cameras.length > 0) {
+                    grid.innerHTML = '';
+                }
+
+                data.cameras.forEach(cam => {
+                    if (activeCameras.has(cam)) return;
+
+                    activeCameras.add(cam);
+                    const displayName = cam.replace(/_/g, ' ').toUpperCase();
+                    const div = document.createElement('div');
+                    div.className = 'relative aspect-video rounded-xl overflow-hidden glass-card group cursor-pointer';
+                    div.onclick = () => openZoom(`/video/${cam}/stream`, displayName);
+                    div.innerHTML = `
+                        <div class="absolute top-2.5 left-2.5 z-10 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur text-[11px] font-bold tracking-wider border border-fuchsia-300/30">${displayName}</div>
+                        <div class="absolute top-2.5 right-2.5 z-10 flex items-center gap-1.5 px-2 py-1 rounded-full bg-rose-500/20 border border-rose-300/40 text-[10px] font-semibold tracking-wider text-rose-200"><span class="inline-block w-1.5 h-1.5 rounded-full bg-rose-300 animate-pulse"></span> REC</div>
+                        <img src="/video/${cam}/stream" class="video-feed">
+                        <div class="absolute inset-0 pointer-events-none scanline opacity-40"></div>
+                    `;
+                    grid.appendChild(div);
+                });
+            } catch (error) {
+                console.error('Failed to fetch cameras:', error);
+            }
+        }
+
+        function openZoom(src, title, isHeatmap = false) {
+            document.getElementById('zoom-modal').classList.remove('hidden');
+            document.getElementById('zoom-image').src = src;
+            document.getElementById('zoom-title').innerText = title;
+            document.getElementById('zoom-overlay').innerHTML = isHeatmap ? document.getElementById('heatmap-overlay').innerHTML : '';
+        }
+
+        function closeZoom() {
+            document.getElementById('zoom-modal').classList.add('hidden');
+            document.getElementById('zoom-image').src = '';
+        }
+
+        async function resetSystem() {
+            if (!confirm('Are you sure you want to wipe tracking metrics and reset the database?')) return;
+
+            try {
+                const response = await fetch('/reset', { method: 'POST' });
+                if (!response.ok) {
+                    alert('Failed to reset system.');
+                    return;
+                }
+
+                document.getElementById('loading-overlay').classList.remove('hidden');
+                document.getElementById('loading-overlay').classList.add('flex');
+                setTimeout(() => window.location.reload(), 10000);
+            } catch (error) {
+                console.error('Error resetting system:', error);
+            }
+        }
+
+        let isDisconnected = false;
+        async function checkConnection() {
+            try {
+                const response = await fetch('/health');
+                if (response.ok) {
+                    if (isDisconnected) window.location.reload();
+                    return;
+                }
+                handleDisconnect();
+            } catch (error) {
+                handleDisconnect();
+            }
+        }
+
+        function handleDisconnect() {
+            if (isDisconnected) return;
+            isDisconnected = true;
+            document.getElementById('loading-overlay').classList.remove('hidden');
+            document.getElementById('loading-overlay').classList.add('flex');
+        }
+
+        setInterval(fetchMetrics, 2000);
+        setInterval(fetchHeatmap, 5000);
+        setInterval(updateCameras, 3000);
+        setInterval(checkConnection, 2500);
+        fetchMetrics();
+        fetchHeatmap();
+        updateCameras();
+    </script>
+</body>
+</html>
