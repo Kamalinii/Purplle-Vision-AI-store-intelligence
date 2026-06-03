@@ -247,6 +247,11 @@ venv\Scripts\activate
 
 pip install -r requirements.txt
 
+NOTE : Add the Video Datasets in the Data folder
+To comply with repository size limits, the raw `.mp4` video files are excluded. 
+1. Create the data directory: `mkdir -p "data/CCTV Footage"`
+2. Place your raw video clips into the folder (e.g., `CAM 1.mp4`, `CAM 2.mp4`).
+
 ### 5. Start API
 
 uvicorn app.main:app --reload
