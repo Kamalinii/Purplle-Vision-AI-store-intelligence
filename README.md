@@ -18,41 +18,52 @@ Using existing CCTV infrastructure, the system automatically tracks visitors, me
 The platform transforms raw video streams into business insights that store managers can use to improve customer experience, optimize layouts, and increase conversions.
 
 ---
+System Architecture
 
-## 🔄 System Pipeline
-
-CCTV Cameras
-
-↓
-
-YOLOv8 Person Detection
-
-↓
-
-Multi-Object Tracking
-
-↓
-
-Visitor Re-Identification
-
-↓
-
-Event Generation
-
-↓
-
-FastAPI Analytics Engine
-
-↓
-
-SQLite Event Store
-
-↓
-
-Live Intelligence Dashboard
-
----
-
+                    ┌────────────────────┐
+                    │ CCTV Camera Feeds  │
+                    └─────────┬──────────┘
+                              │
+                              ▼
+                    ┌────────────────────┐
+                    │ YOLOv8 Detection   │
+                    └─────────┬──────────┘
+                              │
+                              ▼
+                    ┌────────────────────┐
+                    │ ByteTrack Tracking │
+                    └─────────┬──────────┘
+                              │
+                              ▼
+                    ┌────────────────────┐
+                    │ Re-Identification  │
+                    └─────────┬──────────┘
+                              │
+                              ▼
+                    ┌────────────────────┐
+                    │ Event Generation   │
+                    └─────────┬──────────┘
+                              │
+                              ▼
+                    ┌────────────────────┐
+                    │ FastAPI Backend    │
+                    └─────────┬──────────┘
+                              │
+              ┌───────────────┼───────────────┐
+              ▼                               ▼
+    ┌──────────────────┐          ┌──────────────────┐
+    │ SQLite Database  │          │ POS Correlation  │
+    └────────┬─────────┘          └────────┬─────────┘
+             │                             │
+             └──────────────┬──────────────┘
+                            ▼
+                  ┌──────────────────┐
+                  │ Analytics Engine │
+                  └────────┬─────────┘
+                           ▼
+                  ┌──────────────────┐
+                  │ Live Dashboard   │
+                  └──────────────────┘
 ## ✨ Core Features
 
 ### 🎥 Multi-Camera Monitoring
@@ -231,7 +242,7 @@ store-intelligence/
 
 ---
 
-## ⚡ Quick Start
+##  Quick Start
 
 ### 1. Clone Repository
 
@@ -277,7 +288,7 @@ http://localhost:8000/dashboard
 
 ---
 
-## 📊 Analytics Generated
+##  Analytics Generated
 
 ### Footfall Metrics
 
@@ -308,7 +319,7 @@ http://localhost:8000/dashboard
 
 ---
 
-## 🎯 Business Impact
+##  Business Impact
 
 Retail teams can use the platform to:
 
@@ -323,7 +334,7 @@ without deploying additional sensors or hardware.
 
 ---
 
-## 📖 Documentation
+## Documentation
 
 * DESIGN.md – System Architecture & AI-Assisted Decisions
 * CHOICES.md – Engineering Trade-offs & Key Design Decisions
