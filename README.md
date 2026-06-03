@@ -16,6 +16,11 @@ Purplle Vision AI helps retail stores understand customer behavior without requi
 Using existing CCTV infrastructure, the system automatically tracks visitors, measures engagement across product zones, monitors billing queues, generates conversion funnels, and visualizes customer movement through live heatmaps.
 The platform transforms raw video streams into business insights that store managers can use to improve customer experience, optimize layouts, and increase conversions.
 
+<img width="1837" height="907" alt="Screenshot (403)" src="https://github.com/user-attachments/assets/05b0bfb1-7344-4e5f-83c6-09ece7fe685f" />
+<img width="1885" height="907" alt="Screenshot (402)" src="https://github.com/user-attachments/assets/0c100a41-b690-42f6-bae5-86b53e311337" />
+<img width="2830" height="1546" alt="image" src="https://github.com/user-attachments/assets/d13e7c99-9aca-43b9-ae6e-4a8846859635" />
+<img width="1835" height="874" alt="Screenshot (400)" src="https://github.com/user-attachments/assets/7f0cc42d-47c5-4ca0-bd47-45a8bcd84713" />
+
 ---
 System Architecture
 
@@ -282,6 +287,12 @@ python pipeline/cam5.py
 ### 7. Open Dashboard
 
 http://localhost:8000/dashboard
+To visualize the footage detection and tracking  run :
+  python pipeline\detect.py --video "data\CCTV Footage\CAM 1.mp4" --visualize  
+  python pipeline\detect.py --video "data\CCTV Footage\CAM 2.mp4" --visualize  
+  python pipeline\detect.py --video "data\CCTV Footage\CAM 3.mp4" --visualize  
+  python pipeline\detect.py --video "data\CCTV Footage\CAM 4.mp4" --visualize  
+  python pipeline\detect.py --video "data\CCTV Footage\CAM 5.mp4" --visualize  
 
 ---
 
