@@ -16,6 +16,7 @@ Purplle Vision AI helps retail stores understand customer behavior without requi
 Using existing CCTV infrastructure, the system automatically tracks visitors, measures engagement across product zones, monitors billing queues, generates conversion funnels, and visualizes customer movement through live heatmaps.
 The platform transforms raw video streams into business insights that store managers can use to improve customer experience, optimize layouts, and increase conversions.
 
+System Screenshots
 <img width="1837" height="907" alt="Screenshot (403)" src="https://github.com/user-attachments/assets/05b0bfb1-7344-4e5f-83c6-09ece7fe685f" />
 <img width="1885" height="907" alt="Screenshot (402)" src="https://github.com/user-attachments/assets/0c100a41-b690-42f6-bae5-86b53e311337" />
 <img width="2830" height="1546" alt="image" src="https://github.com/user-attachments/assets/d13e7c99-9aca-43b9-ae6e-4a8846859635" />
@@ -143,26 +144,6 @@ Displays:
 * Funnel Analytics
 * Heatmaps
 * Live Camera Streams
-
----
-
-##  Architecture
-
-Camera Feeds
-↓
-YOLOv8 + OpenCV
-↓
-Tracking + Re-ID
-↓
-Event Engine
-↓
-FastAPI Backend
-↓
-SQLite Database
-↓
-Analytics Layer
-↓
-Dashboard UI
 
 ---
 
@@ -342,15 +323,15 @@ without deploying additional sensors or hardware.
 
 ---
 
-## Documentation
+## Documentation & Hackathon Criteria
+
+Every major architectural decision, trade-off, and AI usage has been meticulously documented to meet the Hackathon grading rubric:
+
+- **[docs/DESIGN.md](./docs/DESIGN.md)**: Contains the comprehensive system architecture, Mermaid diagrams, event schemas, and the mandatory **AI-Assisted Decisions** documentation.
+- **[docs/CHOICES.md](./docs/CHOICES.md)**: Deep-dive rationale behind three major architectural trade-offs: *Decoupled Vision Layers*, *Stateless Ledgers*, and *SQLite WAL*.
+
+
 
 * DESIGN.md – System Architecture & AI-Assisted Decisions
 * CHOICES.md – Engineering Trade-offs & Key Design Decisions
-
----
-
-## 👥 Team
-
-Purplle Engineering Challenge 2026
-
-AI-Powered Store Intelligence using Computer Vision and Real-Time Analytics.
+                                                                         Built with and  for the Purplle Tech Challenge 2026
