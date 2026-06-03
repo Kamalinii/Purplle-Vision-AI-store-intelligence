@@ -1,6 +1,7 @@
 # Purplle-Vision-AI-store-intelligence
 AI-powered retail store intelligence platform that transforms CCTV feeds into real-time customer analytics, conversion funnels, queue monitoring, dwell-time insights, and heatmap visualizations using YOLOv8, FastAPI, and OpenCV.
-# 🟣 Purplle Vision AI – Real-Time Store Intelligence Platform
+Built for the Purplle Tech Challenge 2026.
+#  Purplle Vision AI – Real-Time Store Intelligence Platform
 
 End-to-end retail analytics system that converts CCTV footage into actionable business intelligence using Computer Vision, Event Analytics, and Real-Time Dashboards.
 
@@ -8,7 +9,7 @@ Built for the Purplle Engineering Hiring Challenge 2026.
 
 ---
 
-## 🚀 Overview
+##  Overview
 
 Purplle Vision AI helps retail stores understand customer behavior without requiring additional hardware.
 
