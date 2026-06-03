@@ -1,0 +1,30 @@
+data/CCTV Footage/
+data/*.mp4
+data/*.zip
+__pycache__/
+*.pyc
+.env
+.venv
+env/
+venv/
+app/data/store.db
+store.db
+*.db-shm
+*.db-wal
+.pytest_cache/
+
+# YOLO & Logs
+*.pt
+*.log
+pipeline_test*.log
+run.log
+
+# Scratch scripts
+debug_hsv.py
+ocr.swift
+scratch_ocr.py
+test.py
+test_debug.py
+test_staff.py
+process_data.py
+

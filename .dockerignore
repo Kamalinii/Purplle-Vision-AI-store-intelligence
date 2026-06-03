@@ -1,0 +1,4 @@
+data/CCTV Footage/
+__pycache__/
+*.pyc
+.git/
