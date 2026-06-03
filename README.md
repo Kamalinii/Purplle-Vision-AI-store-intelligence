@@ -14,7 +14,6 @@ Built for the Purplle Engineering Hiring Challenge 2026.
 Purplle Vision AI helps retail stores understand customer behavior without requiring additional hardware.
 
 Using existing CCTV infrastructure, the system automatically tracks visitors, measures engagement across product zones, monitors billing queues, generates conversion funnels, and visualizes customer movement through live heatmaps.
-
 The platform transforms raw video streams into business insights that store managers can use to improve customer experience, optimize layouts, and increase conversions.
 
 ---
@@ -64,22 +63,22 @@ System Architecture
                   ┌──────────────────┐
                   │ Live Dashboard   │
                   └──────────────────┘
-## ✨ Core Features
+##  Core Features
 
-### 🎥 Multi-Camera Monitoring
+### Multi-Camera Monitoring
 
 * Simultaneous processing of 5 CCTV feeds
 * Live video streaming dashboard
 * Real-time visitor tracking
 
-### 👥 Visitor Analytics
+### Visitor Analytics
 
 * Unique visitor counting
 * Staff exclusion
 * Cross-camera re-identification
 * Re-entry detection
 
-### ⏱️ Dwell Time Analytics
+### Dwell Time Analytics
 
 Measures customer engagement in:
 
@@ -88,7 +87,7 @@ Measures customer engagement in:
 * Storage Zone
 * Billing Zone
 
-### 📊 Conversion Funnel
+###  Conversion Funnel
 
 Tracks customer journey:
 
@@ -108,7 +107,7 @@ Purchase
 
 Provides conversion and drop-off visibility.
 
-### 🔥 AI Heatmaps
+###  AI Heatmaps
 
 Visualizes:
 
@@ -116,11 +115,11 @@ Visualizes:
 * Customer engagement hotspots
 * Average dwell density
 
-### 🛒 POS Correlation
+###  POS Correlation
 
 Links in-store activity with transaction records to estimate conversion rates.
 
-### 🚦 Queue Intelligence
+###  Queue Intelligence
 
 Monitors:
 
@@ -128,7 +127,7 @@ Monitors:
 * Queue abandonment
 * Checkout bottlenecks
 
-### 📈 Live Dashboard
+### Live Dashboard
 
 Displays:
 
@@ -142,7 +141,7 @@ Displays:
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 Camera Feeds
 ↓
@@ -162,7 +161,7 @@ Dashboard UI
 
 ---
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 ### Computer Vision
 
@@ -192,7 +191,7 @@ Dashboard UI
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 store-intelligence/
 
@@ -218,15 +217,13 @@ store-intelligence/
 
 │ ├── track.py
 
-│ ├── reid.py
+│ ├── detect.py
 
-│ ├── detection.py
-
-│ └── ingestion.py
+│ └── run_all.py
 
 ├── data/
 
-│ ├── CCTV Footage/
+│ ├── CCTV Footage/ //all camera screens
 
 │ ├── layout.png
 
