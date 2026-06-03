@@ -1,0 +1,72 @@
+{
+    "ST1008": {
+        "open_hours": {
+            "start": "10:00:00",
+            "end": "22:00:00"
+        },
+        "zones": [
+            {
+                "zone_id": "CASH_COUNTER",
+                "cameras": [
+                    "CAM_5"
+                ]
+            },
+            {
+                "zone_id": "MAKEUP_UNIT",
+                "cameras": [
+                    "CAM_2"
+                ]
+            },
+            {
+                "zone_id": "SKINCARE",
+                "cameras": [
+                    "CAM_1"
+                ]
+            },
+            {
+                "zone_id": "STORAGE",
+                "cameras": [
+                    "CAM_4"
+                ]
+            },
+            {
+                "zone_id": "ENTRY_EXIT",
+                "cameras": [
+                    "CAM_3"
+                ]
+            }
+        ],
+        "cameras": {
+            "CAM_5": {
+                "type": "billing",
+                "overlaps": [
+                    "CAM_2"
+                ]
+            },
+            "CAM_4": {
+                "type": "floor",
+                "overlaps": []
+            },
+            "CAM_3": {
+                "type": "entry_exit",
+                "overlaps": [
+                    "CAM_1",
+                    "CAM_2"
+                ]
+            },
+            "CAM_2": {
+                "type": "floor",
+                "overlaps": [
+                    "CAM_3",
+                    "CAM_5"
+                ]
+            },
+            "CAM_1": {
+                "type": "floor",
+                "overlaps": [
+                    "CAM_3"
+                ]
+            }
+        }
+    }
+}
