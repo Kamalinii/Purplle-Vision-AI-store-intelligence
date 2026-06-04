@@ -260,15 +260,16 @@ uvicorn app.main:app --reload
 
 Open separate terminals:
 
-python pipeline/cam1.py
+python pipeline\detect.py --video "data\CCTV Footage\cam1.mp4" --web
 
-python pipeline/cam2.py
+python pipeline\detect.py --video "data\CCTV Footage\cam2.mp4" --web
 
-python pipeline/cam3.py
+python pipeline\detect.py --video "data\CCTV Footage\cam3.mp4" --web
 
-python pipeline/cam4.py
+python pipeline\detect.py --video "data\CCTV Footage\cam4.mp4" --web
 
-python pipeline/cam5.py
+python pipeline\detect.py --video "data\CCTV Footage\cam5.mp4" --web
+
 
 ### 7. Open Dashboard
 
