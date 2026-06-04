@@ -273,6 +273,8 @@ python pipeline/cam5.py
 ### 7. Open Dashboard
 
 http://localhost:8000/dashboard
+
+
 To visualize the footage detection and tracking  run :
   python pipeline\detect.py --video "data\CCTV Footage\CAM 1.mp4" --visualize  
   python pipeline\detect.py --video "data\CCTV Footage\CAM 2.mp4" --visualize  
