@@ -342,4 +342,6 @@ Every major architectural decision, trade-off, and AI usage has been meticulousl
 
 * DESIGN.md – System Architecture & AI-Assisted Decisions
 * CHOICES.md – Engineering Trade-offs & Key Design Decisions
+
+
                                                                          Built with and  for the Purplle Tech Challenge 2026
